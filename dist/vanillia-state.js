@@ -64,7 +64,7 @@ export default class VanilliaState {
         this.objectHandler.versionHistory.push(savedObject);
         if (this.objectHandler.callbacks && (this.objectHandler.callbacks.length !== 0) && !initial){
             for (let i = 0; i < this.objectHandler.callbacks.length - 1; i++) {
-                this.objectHandler.callbacks[i](this.objectHandler.stateObjectSave, this.objectHandler.callbacks[i + 1] || null);
+                this.objectHandler.callbacks[i](this.objectHandler.stateObjectSave, savedObject, this.objectHandler.callbacks[i + 1] || null);
             }
         }
     }

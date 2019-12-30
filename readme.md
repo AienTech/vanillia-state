@@ -51,12 +51,12 @@ In this scenario we have one person object, but our app has two different areas 
 
 Create our personInfo state, that watches the person object and the fields "name" and "age. If we do not pass any fields in the second parameter, it will watch the entire object. In this case we only want our personInfoState watching name and age. The rest are callbacks that will take the object as the first paramter and a function as the second for the next chained function and will be called on every save, this is where you will put your database save callback and other things you want.
 ```js
-  const saveToDatabaseFunction = function(stateObject, next) {
+  const saveToDatabaseFunction = function(prevState, nextState, next) {
     // do something with stateObject
     next()
   }
 
-  const updateViewFunction = function(stateObject) {
+  const updateViewFunction = function(prevState, nextState) {
     // update the view or whatever
   }
 
