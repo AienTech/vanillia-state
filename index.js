@@ -1,0 +1,1 @@
+export {default as VanilliaState} from "./dist/vanillia-state";

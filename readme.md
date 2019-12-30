@@ -1,4 +1,9 @@
-# Vanilla State
+# Vanillia State
+
+## WARNING!
+ This package is a fork of [Vanilla State](https://github.com/stevenferretti/vanilla-state) made originally by [Steven Ferretti](https://github.com/stevenferretti)
+
+---
 
 A Lightweight Vanilla Javascript State System
 
@@ -9,13 +14,13 @@ A lot of projects over complicate state management. At the end of the day, state
 ### Installation
 
 ```sh
-$ npm i vanilla-state --save
+$ npm i vanillia-state --save
 ```
 
 ### Initialization
 
 ```js
- const VanillaState = require('vanilla-state');
+ import { VanillaState }  from 'vanillia-state';
 ```
 
 From here, you can take any object that you would like to manage and initialize a vanilla state manager. You can have multiple state managers on an individual object. Let's use an example of one object with two state managers to show you a detailed explanation of to use VanillaState.
