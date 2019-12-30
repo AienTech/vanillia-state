@@ -1,4 +1,4 @@
-class EloquentObjectTools {
+export default class EloquentObjectTools {
     
     constructor(){}
 
@@ -54,6 +54,4 @@ class EloquentObjectTools {
         });
     }
 
-} 
-
-module.exports = EloquentObjectTools;
+}

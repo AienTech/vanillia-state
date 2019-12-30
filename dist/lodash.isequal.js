@@ -1635,7 +1635,7 @@ var isBuffer = nativeIsBuffer || stubFalse;
  * object === other;
  * // => false
  */
-function isEqual(value, other) {
+export default function isEqual(value, other) {
   return baseIsEqual(value, other);
 }
 
@@ -1844,5 +1844,3 @@ function stubArray() {
 function stubFalse() {
   return false;
 }
-
-module.exports = isEqual;
