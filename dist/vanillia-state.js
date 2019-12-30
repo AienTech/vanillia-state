@@ -5,9 +5,9 @@ const eot = new(Eot);
 
 export default class VanillaState {
     
-    constructor(stateObject, items, saveCallBack) {
+    constructor(stateObject, items, ...callbacks) {
         this.objectHandler = {
-            saveCallBack,
+            callbacks,
             stateObject,
             stateObjectSave: eot.clone(stateObject),
             items: (items || Object.keys(stateObject)),
@@ -62,8 +62,10 @@ export default class VanillaState {
             savedObject[field] = eot.clone(this.objectHandler.stateObjectSave[field]);
         }
         this.objectHandler.versionHistory.push(savedObject);
-        if (this.objectHandler.saveCallBack && (typeof this.objectHandler.saveCallBack === "function") && !initial){
-            this.objectHandler.saveCallBack(this.objectHandler.stateObjectSave);
+        if (this.objectHandler.callbacks && (this.objectHandler.callbacks.length !== 0) && !initial){
+            for (let i = 0; i < this.objectHandler.callbacks.length - 1; i++) {
+                this.objectHandler.callbacks[i](this.objectHandler.stateObjectSave, this.objectHandler.callbacks[i + 1] || null);
+            }
         }
     }
 
