@@ -3,7 +3,7 @@ import Eot from "./eot.js";
 
 const eot = new(Eot);
 
-export default class VanillaState {
+export default class VanilliaState {
     
     constructor(stateObject, items, ...callbacks) {
         this.objectHandler = {

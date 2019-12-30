@@ -1,16 +1,25 @@
 # Vanillia State
 
 ## WARNING!
- This package is a fork of [Vanilla State](https://github.com/stevenferretti/vanilla-state) made originally by [Steven Ferretti](https://github.com/stevenferretti)
+ This package is a fork of [Vanilla State](https://github.com/stevenferretti/vanilla-state) originally made by [Steven Ferretti](https://github.com/stevenferretti)
 
 ---
 
 A Lightweight Vanilla Javascript State System
 
  - Pure Vanilla ES6+
+ - Usable in browsers with pure HTML and JS
  - Handles state in a simple eloquent way at an object level
 
 A lot of projects over complicate state management. At the end of the day, state management is really just the versioning and maintenance of an object. The beauty of Javascript is the fact that all objects are inherently pass by reference. Therefore, these objects can be passed to multiple areas of your application and their state can be handled via one easy to use state management service. Vanilla State is a class based system that can be implemented into any Vanilla, Angular, React, Vue etc service to handle the state of an object. The concept of Vanilla State does not follow the normal paradigm of state management, but rather simplifies it and makes it more practical. 
+
+### Features
+
+This library adds the following features to the `vanilla-state`:
+
+- It's compatible with browsers and doesn't require you to use `npm`
+- save functions are chained toghether which allowes you to have multiple functions working as middlewares
+
 ### Installation
 
 ```sh
@@ -19,11 +28,13 @@ $ npm i vanillia-state --save
 
 ### Initialization
 
-```js
- import { VanillaState }  from 'vanillia-state';
+```html
+<script type="module">
+  import VanilliaState  from '/vanillia-state';
+</script>
 ```
 
-From here, you can take any object that you would like to manage and initialize a vanilla state manager. You can have multiple state managers on an individual object. Let's use an example of one object with two state managers to show you a detailed explanation of to use VanillaState.
+From here, you can take any object that you would like to manage and initialize a vanillia state manager. You can have multiple state managers on an individual object. Let's use an example of one object with two state managers to show you a detailed explanation of to use VanillaState.
 
 
 First let's define an object we would like to maintain a state of.
@@ -38,30 +49,39 @@ const person = {
 
 In this scenario we have one person object, but our app has two different areas where it is showing data from the person object. One area (personInfo) is showing the name and age, the other area (sportsArea) is showing the favorte sport and favorite team. For this reason let's make two abiding states (personInfoState, sportsAreaState).
 
-Create our personInfo state, that watches the person object and the fields "name" and "age. If we do not pass any fields in the second parameter, it will watch the entire object. In this case we only want our personInfoState watching name and age. The third paremeter is a callback that will take the object as a paramter and will be called on every save, this is where you will put your database save callback.
+Create our personInfo state, that watches the person object and the fields "name" and "age. If we do not pass any fields in the second parameter, it will watch the entire object. In this case we only want our personInfoState watching name and age. The rest are callbacks that will take the object as the first paramter and a function as the second for the next chained function and will be called on every save, this is where you will put your database save callback and other things you want.
 ```js
- const personInfoState = new VanillaState(person, ['name', 'age'], saveToDatabaseFunction);
+  const saveToDatabaseFunction = function(stateObject, next) {
+    // do something with stateObject
+    next()
+  }
+
+  const updateViewFunction = function(stateObject) {
+    // update the view or whatever
+  }
+
+  const personInfoState = new VanilliaState(person, ['name', 'age'], saveToDatabaseFunction, updateViewFunction);
 ```
 
-Next let's create our sportsArea State, that watches person object and the fields "favoriteSport" and "favoriteTeam". If we do not pass any fields in the second parameter, it will watch the entire object. In this case we only want our personInfoState watching favoriteSport and favoriteTeam.The third paremeter is a callback that will take the object as a paramter and will be called on every save, this is where you will put your database save callback.
+Next let's create our sportsArea State, that watches person object and the fields "favoriteSport" and "favoriteTeam". If we do not pass any fields in the second parameter, it will watch the entire object. In this case we only want our personInfoState watching favoriteSport and favoriteTeam. 
 ```js
- const sportsAreaState = new VanillaState(person, ['favoriteSport', 'favoriteTeam'], saveToDatabaseFunction);
+ const sportsAreaState = new VanilliaState(person, ['favoriteSport', 'favoriteTeam'], saveToDatabaseFunction, updateViewFunction);
 ```
 
 From here we can pass person anywhere within our app, in our case to two different components a personInfo component that will manipulate the personInfo and a sportsArea components that will alter the sportsAreaState, but behind the scenes they are altering the same exact object. 
 
 From here we now have some functions form the state that monitor our state. 
 
-- stateObject.changes -> returns all changes that have occurred on the object 
-- stateObject.items -> returns all of the items this state is watching
-- stateObject.currentState -> returns current state of the object
-- stateObject.lastSavedState -> returns last saved state of the object
-- stateObject.versionHistory -> returns last an array of all saved states and the current state
--stateObject.revertToVersion(versionNumber) -> reverts the state to the version number passed, which will be the index of the version within the versionHistory array
-- stateObject.revertField(field) -> reverts a field to last saved state
-- stateObject.revertAll() -> reverts all fields to last saved state
-- stateObject.saveField(field) -> saves a field to last saved state
-- stateObject.saveAll() -> saves all fields to last saved state
+- `stateObject.changes` -> returns all changes that have occurred on the object 
+- `stateObject.items` -> returns all of the items this state is watching
+- `stateObject.currentState` -> returns current state of the object
+- `stateObject.lastSavedState` -> returns last saved state of the object
+- `stateObject.versionHistory` -> returns last an array of all saved states and the current state
+- `stateObject.revertToVersion(versionNumber)` -> reverts the state to the version number passed, which will be the index of the version within the versionHistory array
+- `stateObject.revertField(field)` -> reverts a field to last saved state
+- `stateObject.revertAll()` -> reverts all fields to last saved state
+- `stateObject.saveField(field)` -> saves a field to last saved state
+- `stateObject.saveAll()` -> saves all fields to last saved state
 
 So lets do some manipulation on our person object that would happen in both of our components 
 ```js
