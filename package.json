@@ -1,6 +1,6 @@
 {
   "name": "vanillia-state",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A fork of vanilla-state by @stevenferretti",
   "main": "index.js",
   "scripts": {
