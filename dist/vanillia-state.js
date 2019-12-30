@@ -1,8 +1,9 @@
-const equal = require('lodash.isequal');
-const Eot = require('eloquent-object-tools');
+import equal from "lodash.isequal";
+import Eot from "eloquent-object-tools";
+
 const eot = new(Eot);
 
-class VanillaState {
+export default class VanillaState {
     
     constructor(stateObject, items, saveCallBack) {
         this.objectHandler = {
@@ -95,5 +96,3 @@ class VanillaState {
     }
     
 }
-
-module.exports = VanillaState;

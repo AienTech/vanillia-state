@@ -1,27 +1,28 @@
 {
-  "name": "vanilla-state",
-  "version": "1.0.8",
-  "description": "Vanilla JS State Management ",
+  "name": "vanillia-state",
+  "version": "1.0.0",
+  "description": "A fork of vanilla-state by @stevenferretti",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stevenferretti/vanilla-state.git"
+    "url": "git+https://github.com/AienTech/vanillia-state.git"
   },
   "keywords": [
     "vanilla",
     "js",
+    "vanillia",
     "state",
     "management"
   ],
-  "author": "Steven Ferretti",
+  "author": "Aien Saidi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stevenferretti/vanilla-state/issues"
+    "url": "https://github.com/AienTech/vanillia-state/issues"
   },
-  "homepage": "https://github.com/stevenferretti/vanilla-state#readme",
+  "homepage": "https://github.com/AienTech/vanillia-state#readme",
   "dependencies": {
     "eloquent-object-tools": "^1.0.4",
     "lodash.isequal": "^4.5.0"
