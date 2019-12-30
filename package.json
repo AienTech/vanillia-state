@@ -1,6 +1,6 @@
 {
   "name": "vanillia-state",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A fork of vanilla-state by @stevenferretti",
   "main": "index.js",
   "scripts": {
@@ -22,9 +22,5 @@
   "bugs": {
     "url": "https://github.com/AienTech/vanillia-state/issues"
   },
-  "homepage": "https://github.com/AienTech/vanillia-state#readme",
-  "dependencies": {
-    "eloquent-object-tools": "^1.0.4",
-    "lodash.isequal": "^4.5.0"
-  }
+  "homepage": "https://github.com/AienTech/vanillia-state#readme"
 }

@@ -1,5 +1,5 @@
-import equal from "lodash.isequal";
-import Eot from "eloquent-object-tools";
+import equal from "./lodash.isequal.js";
+import Eot from "./eot.js";
 
 const eot = new(Eot);
 
